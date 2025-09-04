@@ -1,9 +1,10 @@
+/* 
 import java.util.Scanner;
 
-public class AccountTest{
+public class Account1Test{
     public static void main (String[] args){
-        Account account1 = new Account("Jane Green",50.00);
-        Account account2 = new Account("John Blue", -7.53);
+        Account1 account1 = new Account1("Jane Green",50.00);
+        Account1 account2 = new Account1("John Blue", -7.53);
 
         //exibe saldo inicial de cada objeto
         System.out.printf("%s balance: $%.2f %n",
@@ -33,3 +34,4 @@ public class AccountTest{
 
     }//fim da main
 }  //fim da classe AccountTest
+  */

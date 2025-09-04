@@ -1,4 +1,3 @@
-//Fazer Saque, Trocar Senha (conheça a senha antiga) ...
 
 public class Account {
     private String name,senha; //variavel de instancia
@@ -42,13 +41,30 @@ public class Account {
     //método que deposita (adciona) apenas uma quantia válida no saldo
     public void deposit (double depositAmount){
 
-        if (depositAmount > 0.0) //se depositAmount for valido
-            this.balance = this.balance + depositAmount; //o adiciona saldo
-            
+        if (depositAmount > 0.0){ //se depositAmount for valido
+            this.balance = this.balance + depositAmount; //o adiciona saldo    
+        }else{System.err.println("Numero Invalido!");}
+    }
+
+    //método que saca (retira) apenas uma quantia válida no saldo
+    public void withdraw (double withdrawAmount){
+
+        if (withdrawAmount > 0.0){ //se withdrawAmount for valido
+            if(((balance - withdrawAmount) > (limite*(-1)))){
+                this.balance = this.balance - withdrawAmount; 
+            }else{System.err.println("Limite Insuficiente!");}
+        }else{System.err.println("Numero Invalido!");}
+    }
+
+    public void TrocaSenha (String senhaAnt, String senhaFut){
+        if(senha == senhaAnt){
+            this.senha = senhaFut;
+            System.out.println("Senha Alterada com sucesso!");
+        }else{System.err.println("Senha Inválida!");}
     }
 
     public void Imprime(){
-        System.out.println("\nDados:\n Nome: " + this.getName() + "\nNumero da conta:" + this.getNumConta() + "\nSaldo: " + this.getBalance() + "\nLimite: " + this.getLimite() + "\n");
+        System.out.println("\nDados:\nNome: " + this.getName() + "\nNumero da conta:" + this.getNumConta() + "\nSaldo: " + this.getBalance() + "\nLimite: " + this.getLimite() + "\n");
     }
 
     //método retorna o saldo da conta

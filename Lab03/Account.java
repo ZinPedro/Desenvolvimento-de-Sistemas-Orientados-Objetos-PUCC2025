@@ -1,9 +1,10 @@
-public class Account {
+/* 
+public class Account1 {
     private String name; //variavel de instancia
     private double balance; //variavel de instancia
     
     //contrutor de account que recebe dois parametros
-    public Account(String name,double balance){
+    public Account1(String name,double balance){
 
         this.name = name; //atribui name variavel de intancia name
 
@@ -36,3 +37,4 @@ public class Account {
     }//fim do método getName
 
 } //Fim da classe Account
+ */

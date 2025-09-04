@@ -1,4 +1,4 @@
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class AccountTest{
     public static void main (String[] args){
@@ -10,9 +10,14 @@ public class AccountTest{
         account3.Imprime();
         account1.deposit(50.0);
         account3.deposit(50.0);
+        account1.TrocaSenha("0000","1234");
+        account1.TrocaSenha("0000","1234");
+        account1.TrocaSenha("1234","1212");
         account1.Imprime();
-        account2.Imprime();
-        account3.Imprime();
+        account1.withdraw(99.0);
+        account1.Imprime();
+        account1.withdraw(100.0);
+        account1.Imprime();
         account3.setName("Sabino");
         account3.Imprime();
         /* 
