@@ -1,42 +1,38 @@
-/*
+
 public class Account {
     private String name,senha; //variavel de instancia
     private int numConta; //variavel de instancia
     private double balance, limite;  //variavel de instancia
+
+    private Date openingDate; //Classe Date (Data de abertura da conta)
     
     //contrutor de account que recebe dois parametros
-    public Account(String name,int numConta, double limite){
+    public Account(String name,int numConta, double limite, Date openingDate){
 
         this.name = name; //atribui name variavel de intancia name
         this.numConta = numConta;
         this.senha = "0000";
-        
+        this.balance = 0.0;
 
         //valida que o balance eh maior que 0.0; se nao for,
         // a variavel de instancia balance mantem seu valor inicial padrão de 0.0
-        if (balance > 0.0){ //se o saldo for valido
-            this.balance = 0; //o atribui à variavel de intancia balance 
-        }
+        
         if (limite > 0.0){ //se o saldo for valido
             this.limite = limite; //o atribui à variavel de intancia balance 
         }
+
+        this.openingDate = openingDate;
     }
 
     public Account(){
         this.name = ""; //atribui name variavel de intancia name
         this.numConta = 0;
         this.senha = "";
-        
-
-        //valida que o balance eh maior que 0.0; se nao for,
-        // a variavel de instancia balance mantem seu valor inicial padrão de 0.0
-        if (balance > 0.0){ //se o saldo for valido
-            this.balance = 0; //o atribui à variavel de intancia balance 
-        }
-        if (limite > 0.0){ //se o saldo for valido
-            this.limite = 0; //o atribui à variavel de intancia balance 
-        }
+        this.balance = 0;
+        this.limite = 0; 
+        this.openingDate = new Date(01,01,0000);
     }
+
 
     //método que deposita (adciona) apenas uma quantia válida no saldo
     public void deposit (double depositAmount){
@@ -57,16 +53,21 @@ public class Account {
     }
 
     public void TrocaSenha (String senhaAnt, String senhaFut){
-        if(senha == senhaAnt){
+        if(this.senha.equals(senhaAnt)){
             this.senha = senhaFut;
             System.out.println("Senha Alterada com sucesso!");
         }else{System.err.println("Senha Inválida!");}
     }
 
     public void Imprime(){
-        System.out.println("\nDados:\nNome: " + this.getName() + "\nNumero da conta:" + this.getNumConta() + "\nSaldo: " + this.getBalance() + "\nLimite: " + this.getLimite() + "\n");
-    }
-
+    System.out.println("=== Dados da Conta ===");
+    System.out.println("Nome: " + name);
+    System.out.println("Número da Conta: " + numConta);
+    System.out.println("Saldo: R$ " + String.format("%.2f", balance));
+    System.out.println("Limite: R$ " + String.format("%.2f", limite));
+    System.out.println("Data de Abertura: " + openingDate);
+    System.out.println("======================\n");
+}
     //método retorna o saldo da conta
     public double getBalance(){
         return balance;
@@ -98,8 +99,13 @@ public class Account {
         return limite;
     }
 
+    public Date getOpeningDate() {
+        return this.openingDate;
+    }
 
-
+    public void setOpeningDate(Date openingDate) {
+        this.openingDate = openingDate;
+    }
 
 } //Fim da classe Account
- */
+

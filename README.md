@@ -49,3 +49,21 @@
 5. Desenvolva um método changePassword(String oldPass, String newPass)
 - Permite que o usuário altere a senha, desde que conheça a senha antiga
 - Caso a senha antiga esteja incorreta, avisar ao usuário e não realizar a alteração
+
+### Lab 05:
+#### Continuação do Projeto de conta Bancária Simples iniciado no Lab03 (Código foi duplicado e Lab04 foi comentado para não influênciar nos arquivos do Lab05)
+##### Criar uma Classe Date - deve estar no mesmo diretório da classe bankAccount
+1. Inclua as variáveis de instância (int, private) month, day e year para representar uma data
+2. O construtor da Classe Date recebe como parâmetros: month, day e year, deve:
+- Verificar se o valor de month está no intervalo válido
+- Verificar se o valor de dia está no intervalo do mês dado
+- Verificar se é ano bissexto
+- Caso uma das verificações falhe, deve lançar uma exceção para o método que o chamou 
+
+##### Dentro da Classe BankAccount
+3. Inclua a variável de instância openingDate (Date, private)
+- Esta variável representa a data de abertura da conta
+- Esta variável terá um método get
+4. No construtor (com parâmetro) da classe, inclua mais um parâmetro: Date openingDate
+- Dentro do bloco construtor, deve-se instanciar a variável de instância openingdate com o parâmetro recebido
+- Utilizar a referência this

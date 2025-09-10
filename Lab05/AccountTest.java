@@ -1,10 +1,17 @@
 //import java.util.Scanner;
-/* 
+
 public class AccountTest{
     public static void main (String[] args){
-        Account account1 = new Account("Pedro",1,100.00);
-        Account account2 = new Account("Thiago",2,100000.00);
+        Date d1 = new Date(10, 9, 2025);
+        Date d2 = new Date(31, 3, 2023);
+
+        Account account1 = new Account("Pedro",1,100.00, d1);
+        Account account2 = new Account("Thiago",2,100000.00, d2);
         Account account3 = new Account();
+        account3.setName("Sabino");
+        account3.setOpeningDate(new Date (10,9,2025));
+        account3.setNumConta(3);
+        account3.setLimite(100);
         account1.Imprime();
         account2.Imprime();
         account3.Imprime();
@@ -18,9 +25,7 @@ public class AccountTest{
         account1.Imprime();
         account1.withdraw(100.0);
         account1.Imprime();
-        account3.setName("Sabino");
         account3.Imprime();
-        */
         /* 
 
         //exibe saldo inicial de cada objeto
@@ -50,5 +55,5 @@ public class AccountTest{
         System.out.printf("%s balance: $%.2f %n%n",account2.getName(),account2.getBalance());
         */
 
-//    }//fim da main
-//}  //fim da classe AccountTest
+    }//fim da main
+}  //fim da classe AccountTest
