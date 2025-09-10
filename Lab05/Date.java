@@ -6,12 +6,12 @@ public class Date {
 
     public Date (int dia, int mes, int ano){
 
-        if (dia < 1 || dia > DiasValidosMesAno(mes,ano)){
-            throw new IllegalArgumentException("Dia Inválido: " + dia + " para o mês " + mes);
-        }
-
         if (mes < 1 || mes > 12) {
             throw new IllegalArgumentException("Mês inválido: " + mes);
+        }
+
+        if (dia < 1 || dia > DiasValidosMesAno(mes,ano)){
+            throw new IllegalArgumentException("Dia Inválido: " + dia + " para o mês " + mes + "e ano " + ano);
         }
 
         this.mes = mes;
