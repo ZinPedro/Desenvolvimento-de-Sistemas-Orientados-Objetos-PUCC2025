@@ -14,7 +14,8 @@ public class AccountTest{
             System.out.println("\n=== Menu Principal ===");
             System.out.println("1. Criar nova conta");
             System.out.println("2. Operar conta existente");
-            System.out.println("3. Sair");
+            System.out.println("3. Lista de contas existentes");
+            System.out.println("4. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = input.nextInt();
             input.nextLine(); // Limpar buffer
@@ -40,6 +41,7 @@ public class AccountTest{
                     int mes = input.nextInt();
                     System.out.print("Ano: ");
                     int ano = input.nextInt(); 
+                    input.nextLine();
 
                     Date dataAbertura = new Date (dia, mes, ano);
                     Account novaConta = new Account(nome,numeroConta,limite,dataAbertura);
@@ -47,8 +49,10 @@ public class AccountTest{
 
                     System.out.println("\nConta criada com sucesso! Numero da conta: " + numeroConta);
                     novaConta.Imprime();
+                    System.out.println("Pressione Enter para continuar...");
+                    input.nextLine();  // espera o usuário apertar Enter
 
-                    break;
+                break;
 
                 case 2:
                     //Operar em conta existente
@@ -58,82 +62,99 @@ public class AccountTest{
                     }
 
                     System.out.print("Digite o numero da conta para acessar: ");
-                        int numContaBusca = input.nextInt();
-                        input.nextLine(); //Limpar buffer
+                    int numContaBusca = input.nextInt();
+                    input.nextLine(); //Limpar buffer
 
-                        Account contaSelecionada = null;
+                    Account contaSelecionada = null;
 
-                        for (Account acc : contas){
-                            if(acc.getNumConta() == numContaBusca){
-                                contaSelecionada = acc;
-                                break;
-                            }
-                        }
-
-                        if(contaSelecionada == null){
-                            System.out.println("Conta não encontrada!");
+                    for (Account acc : contas){
+                        if(acc.getNumConta() == numContaBusca){
+                            contaSelecionada = acc;
                             break;
                         }
+                    }
 
-                        //Menu de Operções de Conta
-
-                        int opcaoConta = 0;
-
-                        do{
-                            System.out.println("\n=== Menu da Conta ===");
-                            System.out.println("1. Depositar");
-                            System.out.println("2. Sacar");
-                            System.out.println("3. Trocar Senha");
-                            System.out.println("4. Imprimir Dados da Conta");
-                            System.out.println("5. Voltar ao menu principal");
-                            System.out.print("Escolha uma opção: ");
-                            opcaoConta = input.nextInt();
-                            input.nextLine();
-
-                            switch(opcaoConta){
-                                case 1: 
-                                    System.out.print("Digite o valor para depositar: ");
-                                    double valorDeposito = input.nextDouble();
-                                    contaSelecionada.deposit(valorDeposito);
-                                    break;
-
-                                case 2:
-                                    System.out.print("Digite o valor para sacar: ");
-                                    double valorSaque = input.nextDouble();
-                                    contaSelecionada.withdraw(valorSaque);
-                                    break;
-
-                                case  3:
-                                    System.out.print("Digite a senha atual: ");
-                                    String senhaAtual = input.nextLine();
-                                    System.out.print("Digite a nova senha: ");
-                                    String senhaNova = input.nextLine();
-
-                                    contaSelecionada.TrocaSenha(senhaAtual, senhaNova);
-
-                                case 4: 
-                                    contaSelecionada.Imprime();
-                                    break;
-
-                                case 5:
-                                    System.out.println("Retornando pro menu principal...");
-                                    break;
-
-                                default:
-                                    System.out.println("Opção Inválida");
-                            }
-                        }while(opcao != 5);
+                    if(contaSelecionada == null){
+                        System.out.println("Conta não encontrada!");
                         break;
+                    }
+
+                    //Menu de Operções de Conta
+
+                    int opcaoConta = 0;
+
+                    do{
+                        System.out.println("\n=== Menu da Conta ===");
+                        System.out.println("1. Depositar");
+                        System.out.println("2. Sacar");
+                        System.out.println("3. Trocar Senha");
+                        System.out.println("4. Imprimir Dados da Conta");
+                        System.out.println("5. Voltar ao menu principal");
+                        System.out.print("Escolha uma opção: ");
+                        opcaoConta = input.nextInt();
+                        input.nextLine();
+
+                        switch(opcaoConta){
+                            case 1: 
+                                System.out.print("Digite o valor para depositar: ");
+                                double valorDeposito = input.nextDouble();
+                                contaSelecionada.deposit(valorDeposito);
+                                break;
+
+                            case 2:
+                                System.out.print("Digite o valor para sacar: ");
+                                double valorSaque = input.nextDouble();
+                                contaSelecionada.withdraw(valorSaque);
+                                break;
+
+                            case  3:
+                                System.out.print("Digite a senha atual: ");
+                                String senhaAtual = input.nextLine();
+                                System.out.print("Digite a nova senha: ");
+                                String senhaNova = input.nextLine();
+
+                                contaSelecionada.TrocaSenha(senhaAtual, senhaNova);
+
+                            case 4: 
+                                contaSelecionada.Imprime();
+                                System.out.println("Pressione Enter para continuar...");
+                                input.nextLine();  // espera o usuário apertar Enter
+                                break;
+
+                            case 5:
+                                System.out.println("Retornando pro menu principal...");
+                                break;
+
+                            default:
+                                System.out.println("Opção Inválida");
+                        }
+                    }while(opcaoConta != 5);
+                break;
 
                 case 3:
-                        System.out.println("Saindo do Sistema...");
+                    if(contas.isEmpty()){
+                        System.out.println("Não há contas cadastradas!");
                         break;
+                    }
+
+                    for (Account acc : contas){
+                        acc.getNumConta();
+                        System.out.print("=="+acc.getNumConta()+"==");
+                        acc.getName();
+                        System.out.println(acc.getName() + "==");
+                    }
+
+                break;
+
+                case 4:
+                    System.out.println("Saindo do Sistema...");
+                break;
 
                 default:
-                        System.out.println("Opção Inválida");
+                    System.out.println("Opção Inválida");
             }
 
-        }while(opcao != 3);
+        }while(opcao != 4);
         input.close();
     }
 }
