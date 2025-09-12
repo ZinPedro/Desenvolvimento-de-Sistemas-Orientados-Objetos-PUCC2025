@@ -1,5 +1,5 @@
 
-public class Account {
+public abstract class Account {
     private String name,senha; //variavel de instancia
     private int numConta; //variavel de instancia
     private double balance, limite;  //variavel de instancia
