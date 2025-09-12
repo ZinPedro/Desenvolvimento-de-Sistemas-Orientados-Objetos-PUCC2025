@@ -1,6 +1,6 @@
 public class SimpleAccount extends Account{
-    public SimpleAccount(String nome, int numConta, double limite, Date openingdate){
-        super(nome,numConta,limite,openingdate);
+    public SimpleAccount(String nome, int numConta, Date openingdate){
+        super(nome,numConta,openingdate);
 
     }
 
@@ -15,5 +15,11 @@ public class SimpleAccount extends Account{
         }else{
             System.out.println("Número Inválido");
         }
+    }
+
+    @Override
+    public void Imprime(){
+        super.Imprime();
+        System.out.println("======================\n");
     }
 }

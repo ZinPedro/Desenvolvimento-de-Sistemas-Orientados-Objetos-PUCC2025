@@ -11,7 +11,7 @@ public class Date {
         }
 
         if (dia < 1 || dia > DiasValidosMesAno(mes,ano)){
-            throw new IllegalArgumentException("Dia Inválido: " + dia + " para o mês " + mes + "e ano " + ano);
+            throw new IllegalArgumentException("Dia Inválido: " + dia + " para o mês " + mes + " e ano " + ano);
         }
 
         this.mes = mes;
