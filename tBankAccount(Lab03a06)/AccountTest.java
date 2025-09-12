@@ -1,59 +1,139 @@
-//import java.util.Scanner;
+import java.util.Scanner;
+import java.util.Random;
+import java.util.ArrayList;
 
 public class AccountTest{
     public static void main (String[] args){
-        Date d1 = new Date(10, 9, 2025);
-        Date d2 = new Date(31, 3, 2023);
+        Scanner input = new Scanner(System.in);
+        Random random = new Random();
+        ArrayList<Account> contas = new ArrayList<>();
 
-        Account account1 = new Account("Pedro",1,100.00, d1);
-        Account account2 = new Account("Thiago",2,100000.00, d2);
-        Account account3 = new Account();
-        account3.setName("Sabino");
-        account3.setOpeningDate(new Date (10,9,2025));
-        account3.setNumConta(3);
-        account3.setLimite(100);
-        account1.Imprime();
-        account2.Imprime();
-        account3.Imprime();
-        account1.deposit(50.0);
-        account3.deposit(50.0);
-        account1.TrocaSenha("0000","1234");
-        account1.TrocaSenha("0000","1234");
-        account1.TrocaSenha("1234","1212");
-        account1.Imprime();
-        account1.withdraw(99.0);
-        account1.Imprime();
-        account1.withdraw(100.0);
-        account1.Imprime();
-        account3.Imprime();
-        /* 
+        int opcao=0;
 
-        //exibe saldo inicial de cada objeto
-        System.out.printf("%s balance: $%.2f %n",
-            account1.getName(),account1.getBalance());
-        System.out.printf("%s balance: $%.2f %n%n",
-            account2.getName(),account2.getBalance());
+        do {
+            System.out.println("\n=== Menu Principal ===");
+            System.out.println("1. Criar nova conta");
+            System.out.println("2. Operar conta existente");
+            System.out.println("3. Sair");
+            System.out.print("Escolha uma opção: ");
+            opcao = input.nextInt();
+            input.nextLine(); // Limpar buffer
 
-        //cria um Scanner para obter entrada a partir da janela de comando
-        Scanner input = new Scanner (System.in);
+            switch(opcao){
+                case 1:
+                    //Criar nova conta
+                    System.out.print("Informe seu nome: ");
+                    String nome = input.nextLine();
 
-        System.out.print("Enter deposit amount for account1: "); //prompt
-        double depositAmount = input.nextDouble(); //obtém a entrada do usuario
-        System.out.printf("%nadding %.2f to account balance %n%n", depositAmount);
-        account1.deposit(depositAmount); //adiciona o saldo de account1
-        //exibe os saldos
-        System.out.printf("%s balance: $%.2f %n", account1.getName(),account1.getBalance());
-        System.out.printf("%s balance: $%.2f %n%n", account2.getName(),account2.getBalance());
-        
-        System.out.printf("Enter deposit amount for account2: "); //prompt
-        depositAmount = input.nextDouble(); //obtém a entrada do usuário
-        System.out.printf("%nadding %.2f to account2 balance %n%n",depositAmount);
-        account2.deposit(depositAmount); //Adciona ao saldo de account 2
+                    //Gera numero aleatorio para conta 4 digitos
+                    int numeroConta = 1000 + random.nextInt(9000);
 
-        //exibe os saldos
-        System.out.printf("%s balance: $%.2 %n",account1.getName(),account1.getBalance());
-        System.out.printf("%s balance: $%.2f %n%n",account2.getName(),account2.getBalance());
-        */
+                    //Limite
+                    System.out.print("Informe o limite da conta: ");
+                    double limite = input.nextDouble();
 
-    }//fim da main
-}  //fim da classe AccountTest
+                    // Leitura da data de abertura
+                    System.out.println("Informe a data de abertura da conta:");
+                    System.out.print("Dia: ");
+                    int dia = input.nextInt();
+                    System.out.print("Mês: ");
+                    int mes = input.nextInt();
+                    System.out.print("Ano: ");
+                    int ano = input.nextInt(); 
+
+                    Date dataAbertura = new Date (dia, mes, ano);
+                    Account novaConta = new Account(nome,numeroConta,limite,dataAbertura);
+                    contas.add(novaConta);
+
+                    System.out.println("\nConta criada com sucesso! Numero da conta: " + numeroConta);
+                    novaConta.Imprime();
+
+                    break;
+
+                case 2:
+                    //Operar em conta existente
+                    if(contas.isEmpty()){
+                        System.out.println("Não há contas cadastradas!");
+                        break;
+                    }
+
+                    System.out.print("Digite o numero da conta para acessar: ");
+                        int numContaBusca = input.nextInt();
+                        input.nextLine(); //Limpar buffer
+
+                        Account contaSelecionada = null;
+
+                        for (Account acc : contas){
+                            if(acc.getNumConta() == numContaBusca){
+                                contaSelecionada = acc;
+                                break;
+                            }
+                        }
+
+                        if(contaSelecionada == null){
+                            System.out.println("Conta não encontrada!");
+                            break;
+                        }
+
+                        //Menu de Operções de Conta
+
+                        int opcaoConta = 0;
+
+                        do{
+                            System.out.println("\n=== Menu da Conta ===");
+                            System.out.println("1. Depositar");
+                            System.out.println("2. Sacar");
+                            System.out.println("3. Trocar Senha");
+                            System.out.println("4. Imprimir Dados da Conta");
+                            System.out.println("5. Voltar ao menu principal");
+                            System.out.print("Escolha uma opção: ");
+                            opcaoConta = input.nextInt();
+                            input.nextLine();
+
+                            switch(opcaoConta){
+                                case 1: 
+                                    System.out.print("Digite o valor para depositar: ");
+                                    double valorDeposito = input.nextDouble();
+                                    contaSelecionada.deposit(valorDeposito);
+                                    break;
+
+                                case 2:
+                                    System.out.print("Digite o valor para sacar: ");
+                                    double valorSaque = input.nextDouble();
+                                    contaSelecionada.withdraw(valorSaque);
+                                    break;
+
+                                case  3:
+                                    System.out.print("Digite a senha atual: ");
+                                    String senhaAtual = input.nextLine();
+                                    System.out.print("Digite a nova senha: ");
+                                    String senhaNova = input.nextLine();
+
+                                    contaSelecionada.TrocaSenha(senhaAtual, senhaNova);
+
+                                case 4: 
+                                    contaSelecionada.Imprime();
+                                    break;
+
+                                case 5:
+                                    System.out.println("Retornando pro menu principal...");
+                                    break;
+
+                                default:
+                                    System.out.println("Opção Inválida");
+                            }
+                        }while(opcao != 5);
+                        break;
+
+                case 3:
+                        System.out.println("Saindo do Sistema...");
+                        break;
+
+                default:
+                        System.out.println("Opção Inválida");
+            }
+
+        }while(opcao != 3);
+        input.close();
+    }
+}
