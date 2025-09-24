@@ -20,7 +20,7 @@ public class SavingsAccount extends Account{
     }
 
     public void aplicarRendimento(){
-        balance += getBalance() * (taxaRendimento/100);
+        balance =getBalance() + getBalance() * (taxaRendimento/100);
         setBalance(balance);
     }
 

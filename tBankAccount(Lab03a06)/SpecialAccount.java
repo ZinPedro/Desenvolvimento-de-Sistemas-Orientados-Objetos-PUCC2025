@@ -22,7 +22,7 @@ public class SpecialAccount extends Account{
     @Override
     public void Imprime(){
         super.Imprime();
-        System.out.println("Limite: R$ " + String.format("%.2f", limite));
+        System.out.print("Limite: R$ " + String.format("%.2f", limite));
         System.out.println("\n======================\n");
     }
 

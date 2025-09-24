@@ -10,7 +10,11 @@ public class Date {
             throw new IllegalArgumentException("Mês inválido: " + mes);
         }
 
-        if (dia < 1 || dia > DiasValidosMesAno(mes,ano)){
+        if(dia < 1 || dia > 31){
+            throw new IllegalArgumentException("Dia inválido: " + dia);
+        }
+
+        if (dia > DiasValidosMesAno(mes,ano)){
             throw new IllegalArgumentException("Dia Inválido: " + dia + " para o mês " + mes + " e ano " + ano);
         }
 

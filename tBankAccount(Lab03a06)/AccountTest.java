@@ -40,7 +40,8 @@ public class AccountTest{
                         System.out.println("2. Informações de conta existente");
                         System.out.println("3. Lista de contas existentes");
                         System.out.println("4. Trocar senha (Gerente)");
-                        System.out.println("5. Sair");
+                        System.out.println("5. Aplicar taxa de rendimento");
+                        System.out.println("6. Sair");
                         System.out.print("Escolha uma opção: ");
                         opcaoMenu = input.nextInt();
                         input.nextLine(); // Limpar buffer
@@ -55,16 +56,27 @@ public class AccountTest{
                                 int numeroConta = 1000 + random.nextInt(9000);
             
                                 // Leitura da data de abertura
-                                System.out.println("Informe a data de abertura da conta:");
-                                System.out.print("Dia: ");
-                                int dia = input.nextInt();
-                                System.out.print("Mês: ");
-                                int mes = input.nextInt();
-                                System.out.print("Ano: ");
-                                int ano = input.nextInt(); 
-                                input.nextLine();
-            
-                                Date dataAbertura = new Date (dia, mes, ano);
+
+                                Date dataAbertura=null;
+                                boolean dataValida = false;
+
+                                while(!dataValida){
+                                    System.out.println("Informe a data de abertura da conta:");
+                                    System.out.print("Dia: ");
+                                    int dia = input.nextInt();
+                                    System.out.print("Mês: ");
+                                    int mes = input.nextInt();
+                                    System.out.print("Ano: ");
+                                    int ano = input.nextInt(); 
+                                    input.nextLine();
+                                    try {
+                                        dataAbertura = new Date (dia, mes, ano);
+                                        dataValida=true;
+                                    }catch(IllegalArgumentException e){
+                                        System.out.println("Erro: " + e.getMessage());
+                                        System.out.println("Tente novamente: ");
+                                    }
+                                }
             
                                 System.out.println("Escolha o tipo da conta");
                                 System.out.println("1. Conta Simples");
@@ -189,6 +201,40 @@ public class AccountTest{
                             break;
 
                             case 5:
+                                if(contas.isEmpty()){
+                                    System.out.println("Não há contas cadastradas!");
+                                    break;
+                                }
+            
+                                System.out.print("Digite o numero da conta para aplicar: ");
+                                int numContaBusca1 = input.nextInt();
+                                input.nextLine(); //Limpar buffer
+            
+                                Account contaRendSelecionada = null;
+            
+                                for (Account acc : contas){
+                                    if(acc.getNumConta() == numContaBusca1){
+                                        contaRendSelecionada = acc;
+                                    }
+                                }
+            
+                                if(contaRendSelecionada == null){
+                                    System.out.println("Conta não encontrada!");
+                                    break;
+                                }
+
+                                if (!(contaRendSelecionada instanceof SavingsAccount)) {
+                                    System.out.println("Essa conta não é do tipo Poupança.");
+                                    break;
+                                }
+
+                                SavingsAccount contaPoupanca = (SavingsAccount) contaRendSelecionada;
+                                contaPoupanca.aplicarRendimento();
+                                System.out.println("Rendimento aplicado com sucesso!");
+                                
+                            break;
+
+                            case 6:
                                 System.out.println("Saindo do Menu Gerente");
                             break;
             
@@ -196,7 +242,7 @@ public class AccountTest{
                                 System.out.println("Opção Inválida");
                         }
             
-                    }while(opcaoMenu != 5);
+                    }while(opcaoMenu != 6);
                     
                 break;
 
